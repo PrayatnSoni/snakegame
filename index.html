@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game By Prayatn</title>
+    <link rel="icon" href="snake-and-ladder.png" type="png">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .board {
+        height: 600px;
+        width: 600px;
+        background-color: rgba(255, 255, 255, 0.052);
+        position: absolute;
+        padding: 0;
+        border: none;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+
+
+    }
+
+    .mainboard img {
+        height: 663px;
+        width: 663px;
+    }
+
+    .mainboard {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url("bg.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .item {
+        background-color: white;
+        height: 50px;
+        width: 50px;
+        border: 1px solid black;
+        margin: 4px;
+    }
+
+    .player1 {
+        width: 30px;
+        height: 30px;
+        background-color: rgb(255, 0, 0);
+        border: none;
+        border-radius: 50px;
+        margin: auto auto;
+        z-index: 2;
+        grid-column-start: 1;
+        grid-row-start: 10;
+
+    }
+
+    .player2 {
+        width: 30px;
+        height: 30px;
+        background-color: rgb(238, 255, 0);
+        border: none;
+        border-radius: 50px;
+        margin: auto auto;
+        z-index: 1;
+        grid-column-start: 1;
+        grid-row-start: 10;
+
+    }
+
+    .controls {
+        position: absolute;
+        top: 30%;
+        width: 200px;
+        left: 10%;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #105600;
+        border: none;
+        border-radius: 10px;
+        gap: 10px;
+        color: whitesmoke;
+    }
+
+    #player1location {
+        color: red;
+    }
+
+    #player2location {
+        color: yellow;
+    }
+
+    #dicebtn {
+        background-color: #f96167;
+        color: rgb(225, 225, 225);
+        font-size: 20px;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    #playButton {
+        background-color: #f96167;
+        color: rgb(225, 225, 225);
+        font-size: 20px;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+
+    }
+
+    @media (max-width: 1200px) {
+        .mainboard {
+            align-items: flex-start;
+        }
+
+        .controls {
+            top: 73%;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .board {
+            transform: translateY(30px);
+        }
+    }
+
+    @media (max-width: 700px) {
+        .board {
+            width: 330px;
+            height: 330px;
+        }
+
+        .mainboard img {
+            height: 364px;
+            width: 364px;
+            transform: translateY(16px);
+        }
+
+        .player1,
+        .player2 {
+            height: 19px;
+            width: 19px;
+        }
+
+        .controls {
+            top: 42%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+
+
+        }
+    }
+
+    @media (max-height: 610px) {
+        .controls {
+            height: 225px;
+            width: 185px;
+            font-size: small;
+            left: 9%;
+            top: 50%;
+
+        }
+    }
+
+    .toast {
+        visibility: hidden;
+        /* Hidden by default */
+        min-width: 250px;
+        /* Set a minimum width */
+        margin-left: -125px;
+        /* Center the toast */
+        background-color: #333;
+        /* Background color */
+        color: #fff;
+        /* Text color */
+        text-align: center;
+        /* Center the text */
+        border-radius: 5px;
+        /* Rounded corners */
+        position: fixed;
+        /* Sit on top */
+        z-index: 1;
+        /* Sit on top */
+        left: 50%;
+        /* Center horizontally */
+        bottom: 30px;
+        /* 30px from the bottom */
+        font-size: 17px;
+        /* Font size */
+        padding: 16px;
+        /* Padding */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        /* Shadow */
+        transition: opacity 0.5s, visibility 0.5s;
+        /* Fade in and out */
+    }
+
+    /* Toast Animation */
+    .toast.show {
+        visibility: visible;
+        /* Show the toast */
+        opacity: 1;
+        /* Fully opaque */
+    }
+
+</style>
+
+<body>
+    <div class="mainboard">
+        <img src="bgc1.avif" alt="">
+        <div class="board">
+            <div class="player1" id="play1"></div>
+            <div class="player2" id="play2"></div>
+        </div>
+    </div>
+    <div class="controls">
+        <div id="diceresult">Dice Result</div>
+        <div id="playerturn">Player Turn: </div>
+        <button id="dicebtn">Dice</button>
+        <button id="playButton">Play Music</button>
+        <div id="player1location">Player Red Possition: 0</div>
+        <div id="player2location">Player Yellow Possition: 0</div>
+    </div>
+    <div id="toast" class="toast">Getting The Ladder</div>
+</body>
+<script src="script.js"></script>
+
+</html>
